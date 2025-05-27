@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ProptiTek Inquiry Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f4f4;
+      padding: 30px;
+    }
+
+    .form-container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      padding: 25px 30px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    select, textarea, input[type="text"] {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    textarea {
+      resize: vertical;
+      height: 100px;
+    }
+
+    .radio-group {
+      margin-top: 10px;
+    }
+
+    .radio-group label {
+      font-weight: normal;
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+<div class="form-container">
+  <h2>ProptiTek Inquiry Form</h2>
+  <form action = '/contact-us1' method="POST"    >
+
+    <!-- What can we help you with? (x3) -->
+    <label for="help1">What can we help you with? *</label>
+    <select id="help1" name="help1" required>
+      <option value="">Select one</option>
+      <option>General Inquiry</option>
+      <option>Buying a Home</option>
+      <option>Renting a Home</option>
+      <option>Leasing (Short-term)</option>
+      <option>Property Management Services</option>
+      <option>Client Support/Issue</option>
+      <option>Partnership Opportunities</option>
+      <option>Other</option>
+    </select>
+
+    
+    <!-- Message Details -->
+    <label for="message">Message Details *</label>
+    <textarea id="message" name="message" required></textarea>
+
+    <!-- Location -->
+    <label for="location">Location</label>
+    <input type="text" id="location" name="location" placeholder="Enter property or area details">
+
+    <!-- Preferred Contact Method -->
+    <label>Preferred Contact Method *</label>
+    <div class="radio-group">
+      <label><input type="radio" name="contact" required> Email</label>
+      <label><input type="radio" name="contact"> Phone</label>
+      <label><input type="radio" name="contact"> Either</label>
+    </div>
+
+    <!-- How did you hear about us? -->
+    <label for="referral">How did you hear about ProptiTek? *</label>
+    <select id="referral" name="referral" required>
+      <option value="">Select an option</option>
+      <option>Affiliate / Influencer Marketing</option>
+      <option>Blogs / Podcasts</option>
+      <option>Business Cards / Flyers</option>
+      <option>Email Marketing</option>
+      <option>Word-of-Mouth / Referrals</option>
+      <option>Search Engines (Google, Bing etc.)</option>
+      <option>Social Media (YouTube, Facebook, Instagram, Twitter, etc.)</option>
+      <option>In-Store Promotions</option>
+      <option>Online Advertising (Google Ads, Facebook Ads)</option>
+      <option>Webinars</option>
+      <option>Product Review Websites (TechCabal, Trustpilot, CNET, etc.)</option>
+      <option>Industry Events, Trade Shows and Conferences</option>
+      <option>Print Media (Magazines, Newspapers)</option>
+      <option>Outdoor Media (Billboards, Flyers)</option>
+      <option>Partnership and Sponsorship Events/Programs</option>
+    </select>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+
+  </form>
+</div>
+
+</body>
+</html>
