@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Education and Skills Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f7fafc;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .form-container {
+    background: white;
+    max-width: 500px;
+    width: 100%;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #222;
+  }
+  label {
+    font-weight: 600;
+    margin-top: 15px;
+    display: block;
+    color: #333;
+  }
+  .radio-group label {
+    font-weight: normal;
+    display: block;
+    margin: 6px 0;
+    cursor: pointer;
+  }
+  input[type="text"],
+  input[type="number"],
+  textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+    resize: vertical;
+  }
+  input[type="number"] {
+    max-width: 150px;
+  }
+  button {
+    margin-top: 25px;
+    width: 100%;
+    background-color: #007acc;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 12px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #005f99;
+  }
+  .error {
+    color: red;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+  <form class="form-container" id="educationForm" action="/ba3" method="POST" novalidate>
+    <h2>Education and Skills Form</h2>
+
+    <label>Highest Level of Education <span style="color:red;">*</span></label>
+    <div class="radio-group" id="educationLevelGroup">
+      <label><input type="radio" name="educationLevel" value="high_school" required> High School Diploma</label>
+      <label><input type="radio" name="educationLevel" value="associate_degree"> Associate Degree</label>
+      <label><input type="radio" name="educationLevel" value="bachelors_degree"> Bachelor’s Degree</label>
+      <label><input type="radio" name="educationLevel" value="masters_degree"> Master’s Degree</label>
+      <label><input type="radio" name="educationLevel" value="other"> Other</label>
+    </div>
+
+    
+
+    <label for="educationPlace">Where did you obtain your highest degree? (If applicable)</label>
+    <input type="text" id="educationPlace" name="educationPlace" placeholder="School or University Name" />
+
+    <label for="graduationYear">Year of Graduation</label>
+    <input type="number" id="graduationYear" name="graduationYear" placeholder="e.g., 2022" min="1900" max="2100" />
+
+    <label for="skills">Please list any skills you possess that would be beneficial for your role as an ALMA</label>
+    <textarea id="skills" name="skills" rows="4" placeholder="E.g., digital marketing, sales, communication, negotiation, property listing"></textarea>
+
+    <label for="certifications">Do you hold any relevant certifications? Please list them below:</label>
+    <textarea id="certifications" name="certifications" rows="3" placeholder="E.g., real estate, marketing, business"></textarea>
+
+    <button type="submit">Next</button>
+    <p id="formError" class="error" aria-live="assertive"></p>
+  </form>
+
+<script>
+  const form = document.getElementById('educationForm');
+  const formError = document.getElementById('formError');
+
+  form.addEventListener('submit', function(e) {
+    formError.textContent = '';
+
+    // Check if education level is selected
+    const educationChecked = form.querySelector('input[name="educationLevel"]:checked');
+    if (!educationChecked) {
+      formError.textContent = 'Please select your highest level of education.';
+      e.preventDefault();
+      return;
+    }
+
+    // If graduationYear is filled, check if valid
+    const yearInput = form.elements['graduationYear'].value;
+    if (yearInput) {
+      const year = Number(yearInput);
+      if (isNaN(year) || year < 1900 || year > 2100) {
+        formError.textContent = 'Please enter a valid graduation year between 1900 and 2100.';
+        e.preventDefault();
+        return;
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

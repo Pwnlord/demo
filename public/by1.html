@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Property Enquiry Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f4f4f4;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #aaa;
+      border-radius: 5px;
+    }
+
+    .checkbox-group, .radio-group {
+      margin-top: 5px;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+      display: inline-block;
+      margin-right: 15px;
+      font-weight: normal;
+    }
+
+    .submit-button {
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Property Enquiry Form</h2>
+    <form method="POST" action="/by1">
+      <label for="fullName">Full Name*</label>
+      <input type="text" id="fullName" name="fullName" required>
+
+      <label for="email">Email Address*</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number*</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="address">Contact Address*</label>
+      <textarea id="address" name="address" required></textarea>
+
+      <label>Preferred Contact Method*</label>
+      <div class="radio-group">
+        <label><input type="radio" name="contactMethod" value="Phone" required> Phone</label>
+        <label><input type="radio" name="contactMethod" value="Email"> Email</label>
+        <label><input type="radio" name="contactMethod" value="Whatsapp"> Whatsapp</label>
+        <label><input type="radio" name="contactMethod" value="SMS"> SMS</label>
+      </div>
+
+      <label for="occupation">Occupation*</label>
+      <input type="text" id="occupation" name="occupation" required>
+
+      <label for="officeLocation">Office Location (if applicable)</label>
+      <input type="text" id="officeLocation" name="officeLocation">
+
+      <label>Employment Type*</label>
+      <div class="radio-group">
+        <label><input type="radio" name="employmentType" value="Self Employed" required> Self Employed</label>
+        <label><input type="radio" name="employmentType" value="Employed"> Employed</label>
+        <label><input type="radio" name="employmentType" value="Retired"> Retired</label>
+        <label><input type="radio" name="employmentType" value="Unemployed"> Unemployed</label>
+        <label><input type="radio" name="employmentType" value="Dependent"> Dependent</label>
+      </div>
+
+      <label>Are you a first time Buyer/Renter?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="firstTime" value="Yes"> Yes</label>
+        <label><input type="radio" name="firstTime" value="No"> No</label>
+      </div>
+
+      <label>Purpose of the Property Enquiry*</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="purpose" value="Personal Use"> Personal Use</label>
+        <label><input type="checkbox" name="purpose" value="Investment"> Investment</label>
+        <label><input type="checkbox" name="purpose" value="Relocation"> Relocation</label>
+        <label><input type="checkbox" name="purpose" value="Vacation"> Vacation</label>
+        <label><input type="checkbox" name="purpose" value="Warehousing"> Warehousing</label>
+        <label><input type="checkbox" name="purpose" value="Corporate leasing"> Corporate leasing</label>
+        <label><input type="checkbox" name="purpose" value="Events"> Events</label>
+        <label><input type="checkbox" name="purpose" value="Leisure and Relaxation"> Leisure and Relaxation</label>
+        <label><input type="checkbox" name="purpose" value="Home/Event Staging"> Home/Event Staging</label>
+      </div>
+
+      <label>Type of Enquiry*</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="enquiryType" value="Buying"> Buying</label>
+        <label><input type="checkbox" name="enquiryType" value="Renting"> Renting</label>
+        <label><input type="checkbox" name="enquiryType" value="Short Lease"> Short Lease</label>
+        <label><input type="checkbox" name="enquiryType" value="Other"> Other</label>
+      </div>
+
+      <div class="submit-button">
+        <button type="submit">Submit</button>
+      </div>
+    </form>
+  </div>
+
+</body>
+</html>

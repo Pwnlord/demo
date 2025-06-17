@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Apartment Preference Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f7f7f7;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .checkbox-group, .radio-group {
+      margin-top: 5px;
+    }
+
+    .checkbox-group label,
+    .radio-group label {
+      display: inline-block;
+      margin-right: 15px;
+      font-weight: normal;
+    }
+
+    .submit-button {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .section-title {
+      margin-top: 30px;
+      font-size: 1.2em;
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Apartment Preference Form</h2>
+    <form method="POST" action="/by2">
+
+      <label class="section-title">Preferred Apartment Type *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="apartmentType" value="Residential" required> Residential</label>
+        <label><input type="radio" name="apartmentType" value="Commercial"> Commercial</label>
+        <label><input type="radio" name="apartmentType" value="Lodging & Vacation"> Lodging & Vacation</label>
+        <label><input type="radio" name="apartmentType" value="Land"> Land</label>
+      </div>
+
+      <label class="section-title">Preferred Property Size *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="propertySize" value="Small" required> Small (Up to 1,000 sq ft)</label>
+        <label><input type="radio" name="propertySize" value="Medium"> Medium (1,001–2,500 sq ft)</label>
+        <label><input type="radio" name="propertySize" value="Large"> Large (2,501–4,000 sq ft)</label>
+        <label><input type="radio" name="propertySize" value="Extra Large"> Extra Large (Above 4,000 sq ft)</label>
+      </div>
+
+      <label>Number of Bedrooms *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="bedrooms" value="1" required> 1</label>
+        <label><input type="radio" name="bedrooms" value="2"> 2</label>
+        <label><input type="radio" name="bedrooms" value="3"> 3</label>
+        <label><input type="radio" name="bedrooms" value="4"> 4</label>
+        <label><input type="radio" name="bedrooms" value="5+"> 5+</label>
+        <label><input type="radio" name="bedrooms" value="Studio"> Studio</label>
+      </div>
+
+      <label>Number of Bathrooms *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="bathrooms" value="1" required> 1</label>
+        <label><input type="radio" name="bathrooms" value="2"> 2</label>
+        <label><input type="radio" name="bathrooms" value="3"> 3</label>
+        <label><input type="radio" name="bathrooms" value="4+"> 4+</label>
+      </div>
+
+      <label>Preferred Floor Level *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="floorLevel" value="Ground Floor" required> Ground Floor</label>
+        <label><input type="radio" name="floorLevel" value="Middle Floors"> Middle Floors</label>
+        <label><input type="radio" name="floorLevel" value="Top Floors"> Top Floors</label>
+        <label><input type="radio" name="floorLevel" value="Penthouse"> Penthouse</label>
+        <label><input type="radio" name="floorLevel" value="No Preference"> No Preference</label>
+      </div>
+
+      <label>Preferred Location *</label>
+      <input type="text" name="location" required>
+
+      <label>Preferred Proximity to Landmarks *</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="proximity" value="Schools"> Close to Schools</label>
+        <label><input type="checkbox" name="proximity" value="Work"> Close to Work</label>
+        <label><input type="checkbox" name="proximity" value="Transport"> Close to Public Transport</label>
+        <label><input type="checkbox" name="proximity" value="Shopping Centers"> Close to Shopping Centers</label>
+        <label><input type="checkbox" name="proximity" value="Parks"> Close to Parks</label>
+        <label><input type="checkbox" name="proximity" value="Healthcare"> Close to Healthcare Facilities</label>
+      </div>
+
+      <label>Preferred Budget Range *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="budgetRange" value="1–500,000" required> 1–500,000</label>
+        <label><input type="radio" name="budgetRange" value="500,000–1,500,000"> 500,000–1,500,000</label>
+        <label><input type="radio" name="budgetRange" value="1,500,000–5,000,000"> 1,500,000–5,000,000</label>
+        <label><input type="radio" name="budgetRange" value="5,000,000+"> 5,000,000+</label>
+      </div>
+
+      <label>Minimum & Maximum Budget *</label>
+      <input type="text" name="minMaxBudget" required>
+
+      <label>Preferred Property Condition *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="propertyCondition" value="New Build" required> New Build</label>
+        <label><input type="radio" name="propertyCondition" value="Recently Renovated"> Recently Renovated</label>
+        <label><input type="radio" name="propertyCondition" value="Older Property"> Older Property</label>
+        <label><input type="radio" name="propertyCondition" value="Ready to Move"> Ready to Move</label>
+        <label><input type="radio" name="propertyCondition" value="No Preference"> No Preference</label>
+      </div>
+
+      <label>Essential Features *</label>
+      <div class="checkbox-group">
+        <label><input type="checkbox" name="features" value="Air Conditioning"> Air Conditioning</label>
+        <label><input type="checkbox" name="features" value="Water Heater"> Water Heater</label>
+        <label><input type="checkbox" name="features" value="Fitted Kitchen"> Fitted Kitchen</label>
+        <label><input type="checkbox" name="features" value="Walk-in Closet"> Walk-in Closet</label>
+        <label><input type="checkbox" name="features" value="Home Office"> Home Office Space</label>
+        <label><input type="checkbox" name="features" value="Boys Quarters"> Boys Quarters</label>
+        <label><input type="checkbox" name="features" value="Storage Room"> Storage Room</label>
+        <label><input type="checkbox" name="features" value="Private Entrance"> Private Entrance</label>
+        <label><input type="checkbox" name="features" value="Smart Home System"> Smart Home System</label>
+        <label><input type="checkbox" name="features" value="Carpark"> Spacious Carpark</label>
+        <label><input type="checkbox" name="features" value="Swimming Pool"> Swimming Pool</label>
+        <label><input type="checkbox" name="features" value="Gym"> Private Gym</label>
+        <label><input type="checkbox" name="features" value="Cinema"> Private Cinema</label>
+        <label><input type="checkbox" name="features" value="Garden"> Garden</label>
+        <label><input type="checkbox" name="features" value="Rooftop"> Rooftop</label>
+        <label><input type="checkbox" name="features" value="Elevator"> Elevator</label>
+        <label><input type="checkbox" name="features" value="Play Area"> Children's play area</label>
+        <label><input type="checkbox" name="features" value="Clubhouse"> Clubhouse</label>
+        <label><input type="checkbox" name="features" value="Sports Facilities"> Sports Facilities</label>
+        <label><input type="checkbox" name="features" value="Other"> Other</label>
+      </div>
+
+      <label>Please specify any other essential features...</label>
+      <input type="text" name="otherFeatures">
+
+      <label>Preferred Payment Plan *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="paymentPlan" value="Full Payment" required> Full Payment</label>
+        <label><input type="radio" name="paymentPlan" value="Mortgage"> Mortgage</label>
+        <label><input type="radio" name="paymentPlan" value="Rent to Own"> Rent to Own</label>
+        <label><input type="radio" name="paymentPlan" value="Instalment Plan"> Instalment Plan</label>
+        <label><input type="radio" name="paymentPlan" value="Lease Agreement"> Lease Agreement</label>
+        <label><input type="radio" name="paymentPlan" value="Other"> Other</label>
+      </div>
+
+      <label>Do you require documentation/legal services? *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="legalServices" value="Yes" required> Yes</label>
+        <label><input type="radio" name="legalServices" value="No"> No</label>
+        <label><input type="radio" name="legalServices" value="In Process"> In Process</label>
+      </div>
+
+      <label>Do you require a mortgage or financial assistance? *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="mortgageHelp" value="Yes" required> Yes</label>
+        <label><input type="radio" name="mortgageHelp" value="No"> No</label>
+      </div>
+
+      <label class="section-title">Guarantor Information</label>
+
+      <label>Name of Guarantor *</label>
+      <input type="text" name="guarantorName" required>
+
+      <label>Phone Number of Guarantor *</label>
+      <input type="tel" name="guarantorPhone" required>
+
+      <label>Email Address of Guarantor *</label>
+      <input type="email" name="guarantorEmail" required>
+
+      <label>Occupation of Guarantor *</label>
+      <input type="text" name="guarantorOccupation" required>
+
+      <label>Address of Guarantor *</label>
+      <textarea name="guarantorAddress" required></textarea>
+
+      <label>Relationship with Guarantor *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="guarantorRelationship" value="Father" required> Father</label>
+        <label><input type="radio" name="guarantorRelationship" value="Mother"> Mother</label>
+        <label><input type="radio" name="guarantorRelationship" value="Sibling"> Sibling</label>
+        <label><input type="radio" name="guarantorRelationship" value="Cousin"> Cousin</label>
+        <label><input type="radio" name="guarantorRelationship" value="Uncle"> Uncle</label>
+        <label><input type="radio" name="guarantorRelationship" value="Aunty"> Aunty</label>
+        <label><input type="radio" name="guarantorRelationship" value="Spouse"> Spouse</label>
+        <label><input type="radio" name="guarantorRelationship" value="Colleague"> Colleague</label>
+        <label><input type="radio" name="guarantorRelationship" value="Friend"> Friend</label>
+        <label><input type="radio" name="guarantorRelationship" value="Associate"> Associate</label>
+        <label><input type="radio" name="guarantorRelationship" value="Other"> Other</label>
+      </div>
+
+      <div class="submit-button">
+        <button type="submit">Submit</button>
+      </div>
+
+    </form>
+  </div>
+
+</body>
+</html>

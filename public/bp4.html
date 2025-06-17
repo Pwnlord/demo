@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How Did You Hear About ProptiTek?</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f8f8f8;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    .radio-group label {
+      display: block;
+      margin-top: 10px;
+    }
+
+    .submit-button {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>How Did You Hear About ProptiTek?</h2>
+    <form method="POST" action="/bp4">
+
+      <label>How did you hear about ProptiTek? *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="discoverySource" value="Affiliate / Influencer Marketing" required> Affiliate / Influencer Marketing</label>
+        <label><input type="radio" name="discoverySource" value="Blogs / Podcasts"> Blogs / Podcasts</label>
+        <label><input type="radio" name="discoverySource" value="Business Cards / Flyers"> Business Cards / Flyers</label>
+        <label><input type="radio" name="discoverySource" value="Email"> Email</label>
+        <label><input type="radio" name="discoverySource" value="Word-of-Mouth / Referrals"> Word-of-Mouth / Referrals</label>
+        <label><input type="radio" name="discoverySource" value="Social Media (Youtube, Facebook, Instagram, Twitter, etc.)"> Social Media (Youtube, Facebook, Instagram, Twitter, etc.)</label>
+        <label><input type="radio" name="discoverySource" value="Search Engines (Google, Bing etc.)"> Search Engines (Google, Bing etc.)</label>
+        <label><input type="radio" name="discoverySource" value="In-Store Promotions"> In-Store Promotions</label>
+        <label><input type="radio" name="discoverySource" value="Product Review Websites (Techcabal, Trustpilot, CNET etc)"> Product Review Websites (Techcabal, Trustpilot, CNET etc)</label>
+        <label><input type="radio" name="discoverySource" value="Industry Events, Trade Shows and Conferences"> Industry Events, Trade Shows and Conferences</label>
+        <label><input type="radio" name="discoverySource" value="Print Advertising (Magazines, Newspapers)"> Print Advertising (Magazines, Newspapers)</label>
+        <label><input type="radio" name="discoverySource" value="Outdoor Advertising (Billboards, Flyers)"> Outdoor Advertising (Billboards, Flyers)</label>
+        <label><input type="radio" name="discoverySource" value="Partnership and Sponsorship Events/Programs"> Partnership and Sponsorship Events/Programs</label>
+        <label><input type="radio" name="discoverySource" value="Other"> Other</label>
+      </div>
+
+      <div class="submit-button">
+        <button type="submit">Submit</button>
+      </div>
+
+    </form>
+  </div>
+
+</body>
+</html>

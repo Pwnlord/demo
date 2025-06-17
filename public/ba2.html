@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Real Estate Experience Form</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f3f7;
+    margin: 0;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-container {
+    background: white;
+    padding: 30px 40px;
+    border-radius: 8px;
+    max-width: 480px;
+    width: 100%;
+    box-shadow: 0 3px 12px rgba(0,0,0,0.1);
+  }
+
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #222;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    margin-top: 15px;
+    color: #333;
+  }
+
+  input[type="text"] {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 16px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+
+  .radio-group,
+  .checkbox-group {
+    margin-top: 5px;
+  }
+
+  .radio-group label,
+  .checkbox-group label {
+    font-weight: normal;
+    display: block;
+    margin-bottom: 8px;
+    cursor: pointer;
+  }
+
+  input[type="radio"],
+  input[type="checkbox"] {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+
+  .checkbox-group label {
+    display: flex;
+    align-items: center;
+  }
+
+  .submit-btn {
+    margin-top: 25px;
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    background-color: #45a049;
+  }
+
+  .error {
+    color: red;
+    margin-top: 5px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+  <form class="form-container" id="experienceForm" action="/ba2" method="POST" novalidate>
+    <h2>Real Estate Experience Form</h2>
+
+    <label for="occupation">Current Occupation</label>
+    <input type="text" id="occupation" name="occupation" placeholder="Enter your current occupation" required minlength="2" />
+    
+
+
+    <label>Years of Experience in Real Estate <span style="color:red;">*</span></label>
+    <div class="radio-group" id="experienceGroup">
+      <label><input type="radio" name="experience" value="less_than_1" required> Less than 1 year</label>
+      <label><input type="radio" name="experience" value="1_3_years"> 1-3 years</label>
+      <label><input type="radio" name="experience" value="3_5_years"> 3-5 years</label>
+      <label><input type="radio" name="experience" value="5_plus_years"> 5+ years</label>
+      <label><input type="radio" name="experience" value="none_yet"> None yet</label>
+    </div>
+
+    <label>Do you have prior experience working as an affiliate marketer or agent? <span style="color:red;">*</span></label>
+    <div class="radio-group" id="affiliateGroup">
+      <label><input type="radio" name="affiliateExperience" value="yes" required> Yes</label>
+      <label><input type="radio" name="affiliateExperience" value="no"> No</label>
+    </div>
+
+    <label>What type of properties or markets do you specialize in? <span style="color:red;">*</span></label>
+    <div class="checkbox-group" id="specializeGroup">
+      <label><input type="checkbox" name="specialize" value="residential" required> Residential</label>
+      <label><input type="checkbox" name="specialize" value="commercial"> Commercial</label>
+      <label><input type="checkbox" name="specialize" value="industrial"> Industrial</label>
+      <label><input type="checkbox" name="specialize" value="short_rentals"> Short Rentals / Lease</label>
+      <label><input type="checkbox" name="specialize" value="land"> Land</label>
+      <label><input type="checkbox" name="specialize" value="other"> Other</label>
+    </div>
+
+    <button type="submit" class="submit-btn">Next</button>
+    <p id="formError" class="error" aria-live="assertive"></p>
+  </form>
+
+<script>
+  const form = document.getElementById('experienceForm');
+  const formError = document.getElementById('formError');
+
+  form.addEventListener('submit', function(e) {
+    formError.textContent = '';
+
+    // Check if at least one radio is selected for experience
+    const experienceChecked = form.querySelector('input[name="experience"]:checked');
+    if (!experienceChecked) {
+      formError.textContent = 'Please select your years of experience in real estate.';
+      e.preventDefault();
+      return;
+    }
+
+    // Check if affiliate marketer experience radio is selected
+    const affiliateChecked = form.querySelector('input[name="affiliateExperience"]:checked');
+    if (!affiliateChecked) {
+      formError.textContent = 'Please indicate if you have prior affiliate marketer or agent experience.';
+      e.preventDefault();
+      return;
+    }
+
+    // Check if at least one checkbox is checked in specialize
+    const specializeChecked = form.querySelectorAll('input[name="specialize"]:checked');
+    if (specializeChecked.length === 0) {
+      formError.textContent = 'Please select at least one property or market specialization.';
+      e.preventDefault();
+      return;
+    }
+
+    // Check occupation input
+    const occupationInput = form.elements['occupation'];
+    if (!occupationInput.value.trim() || occupationInput.value.trim().length < 2) {
+      formError.textContent = 'Please enter a valid current occupation (at least 2 characters).';
+      e.preventDefault();
+      return;
+    }
+  });
+</script>
+
+</body>
+</html>

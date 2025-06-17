@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buyer Preferences Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 40px;
+      background-color: #f8f8f8;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: auto;
+      background: white;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="number"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .radio-group,
+    .checkbox-group {
+      margin-top: 10px;
+    }
+
+    .radio-group label,
+    .checkbox-group label {
+      display: inline-block;
+      margin-right: 15px;
+    }
+
+    .submit-button {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    button {
+      background-color: #007BFF;
+      color: white;
+      padding: 12px 25px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    .section-title {
+      margin-top: 30px;
+      font-size: 1.2em;
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Buyer Preferences Form</h2>
+    <form method="POST" action="/bp3">
+
+      <label class="section-title">Preferred Age Range of Buyer(s) *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="ageRange" value="18-25" required> 18-25</label>
+        <label><input type="radio" name="ageRange" value="25-35"> 25-35</label>
+        <label><input type="radio" name="ageRange" value="35-45"> 35-45</label>
+        <label><input type="radio" name="ageRange" value="45-55"> 45-55</label>
+        <label><input type="radio" name="ageRange" value="55+"> 55+</label>
+      </div>
+
+      <label class="section-title">Preferred Marital Status(s) *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="maritalStatus" value="Single" required> Single</label>
+        <label><input type="radio" name="maritalStatus" value="Married"> Married</label>
+        <label><input type="radio" name="maritalStatus" value="Divorced"> Divorced</label>
+        <label><input type="radio" name="maritalStatus" value="No Preference"> No Preference</label>
+      </div>
+
+      <label class="section-title">Employment Status of Buyer(s) *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="employmentStatus" value="Full-time Employed" required> Full-time Employed</label>
+        <label><input type="radio" name="employmentStatus" value="Part-time Employed"> Part-time Employed</label>
+        <label><input type="radio" name="employmentStatus" value="Self-employed"> Self-employed</label>
+        <label><input type="radio" name="employmentStatus" value="Retired"> Retired</label>
+        <label><input type="radio" name="employmentStatus" value="No Preference"> No Preference</label>
+        <label><input type="radio" name="employmentStatus" value="Students"> Students</label>
+      </div>
+
+      <label class="section-title">Religion(s) *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="religion" value="Christianity" required> Christianity</label>
+        <label><input type="radio" name="religion" value="Islam"> Islam</label>
+        <label><input type="radio" name="religion" value="Hinduism"> Hinduism</label>
+        <label><input type="radio" name="religion" value="Judaism"> Judaism</label>
+        <label><input type="radio" name="religion" value="Other"> Other</label>
+        <label><input type="radio" name="religion" value="No Preference"> No Preference</label>
+      </div>
+
+      <label class="section-title">Do you have a preferred nationality or ethnicity for the buyer(s)? *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="nationalityPreference" value="Yes" required> Yes</label>
+        <label><input type="radio" name="nationalityPreference" value="No"> No</label>
+      </div>
+
+      <label>If Yes, what are your preference(s)?</label>
+      <input type="text" name="nationality" placeholder="Nationality Preference">
+
+      <label class="section-title">Do you have any preferences for the buyer’s family size? This is applicable to homes for rent or lease(s) *</label>
+      <div class="radio-group">
+        <label><input type="radio" name="familySizePreference" value="Yes" required> Yes</label>
+        <label><input type="radio" name="familySizePreference" value="No"> No</label>
+      </div>
+
+      <label>If Yes, what are your preference(s)?</label>
+      <input type="text" name="familySize" placeholder="Size Preference">
+
+      <label class="section-title">Are pets allowed on the property?</label>
+      <div class="radio-group">
+        <label><input type="radio" name="petsAllowed" value="Yes"> Yes</label>
+        <label><input type="radio" name="petsAllowed" value="No"> No</label>
+        <label><input type="radio" name="petsAllowed" value="Maybe"> Maybe</label>
+      </div>
+
+      <div class="submit-button">
+        <button type="submit">Next</button>
+      </div>
+
+    </form>
+  </div>
+
+</body>
+</html>

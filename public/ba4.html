@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Proptitek ALMA Application</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    background: #f9fafb;
+    margin: 0; padding: 20px;
+    display: flex; justify-content: center;
+  }
+  .form-container {
+    background: #fff;
+    max-width: 600px;
+    width: 100%;
+    padding: 30px 40px;
+    border-radius: 8px;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  }
+  h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #222;
+  }
+  label {
+    display: block;
+    font-weight: 600;
+    margin-top: 15px;
+    color: #333;
+  }
+  input[type="text"],
+  input[type="date"],
+  textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin-top: 6px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+  textarea {
+    min-height: 80px;
+  }
+  .radio-group label {
+    font-weight: normal;
+    display: block;
+    margin: 6px 0;
+    cursor: pointer;
+  }
+  input[type="radio"] {
+    margin-right: 10px;
+    cursor: pointer;
+  }
+  button {
+    margin-top: 30px;
+    width: 100%;
+    background-color: #007acc;
+    color: white;
+    font-size: 16px;
+    font-weight: 600;
+    padding: 14px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+  }
+  button:hover {
+    background-color: #005f99;
+  }
+  .error {
+    color: red;
+    margin-top: 8px;
+    font-size: 14px;
+  }
+</style>
+</head>
+<body>
+
+<form id="almaForm" class="form-container" action="/ba4" method="POST" novalidate>
+  <h2>Proptitek ALMA Application</h2>
+
+  <label for="employer">Previous/Current Employer</label>
+  <input type="text" id="employer" name="employer" placeholder="Employer Name" />
+
+  <label for="jobTitle">Job Title</label>
+  <input type="text" id="jobTitle" name="jobTitle" placeholder="Your Job Title" />
+
+  <label for="startDate">Duration (START DATE)</label>
+  <input type="date" id="startDate" name="startDate" />
+  
+
+
+  <label for="endDate">Duration (END DATE)</label>
+  <input type="date" id="endDate" name="endDate" />
+
+  <label for="whyJoin">Why do you want to join Proptitek as an ALMA?</label>
+  <textarea id="whyJoin" name="whyJoin" placeholder="Share your motivation"></textarea>
+
+  <label for="referralInfo">Referral Information</label>
+  <input type="text" id="referralInfo" name="referralInfo" placeholder="If applicable" />
+
+  <label>How did you hear about the ALMA Program? <span style="color:red;">*</span></label>
+  <div class="radio-group" id="hearGroup">
+    <label><input type="radio" name="hearAbout" value="website" required> ProptiTek Website</label>
+    <label><input type="radio" name="hearAbout" value="social_media"> Social Media</label>
+    <label><input type="radio" name="hearAbout" value="job_board"> Job Board</label>
+    <label><input type="radio" name="hearAbout" value="referral"> Referral</label>
+    <label><input type="radio" name="hearAbout" value="other"> Other</label>
+  </div>
+
+  <label for="additionalInfo">If there’s anything else you’d like to share with us about your application, feel free to do so:</label>
+  <textarea id="additionalInfo" name="additionalInfo" placeholder="Additional comments or info"></textarea>
+
+  <button type="submit">Submit Application</button>
+  <p id="formError" class="error" aria-live="assertive"></p>
+</form>
+
+<script>
+  const form = document.getElementById('almaForm');
+  const errorEl = document.getElementById('formError');
+
+  form.addEventListener('submit', e => {
+    errorEl.textContent = '';
+
+    // Validate required radio (how did you hear)
+    const hearSelected = form.querySelector('input[name="hearAbout"]:checked');
+    if (!hearSelected) {
+      errorEl.textContent = 'Please tell us how you heard about the ALMA Program.';
+      e.preventDefault();
+      return;
+    }
+
+    // Optional: Validate dates (if both filled, start <= end)
+    const startDateVal = form.startDate.value;
+    const endDateVal = form.endDate.value;
+    if (startDateVal && endDateVal) {
+      if (new Date(startDateVal) > new Date(endDateVal)) {
+        errorEl.textContent = 'Start Date cannot be after End Date.';
+        e.preventDefault();
+        return;
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

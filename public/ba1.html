@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>User Information Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f7f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .form-container {
+      background: #ffffff;
+      max-width: 500px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .form-container h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .error {
+      color: red;
+      margin-bottom: 10px;
+      font-size: 14px;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="form-container">
+    <h2>User Information Form</h2>
+    <form id="userForm" action="/ba1" method="POST" novalidate>
+      
+      <div class="error" id="errorMsg"></div>
+
+      <label for="fullName">Full Name</label>
+      <input type="text" id="fullName" name="fullName" required minlength="3">
+
+
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" required pattern="^\+?\d{7,15}$" placeholder="+1234567890">
+
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required>
+
+      <label for="address">Contact Address</label>
+      <textarea id="address" name="address" rows="3" required></textarea>
+
+      <label for="idType">Form of Identification</label>
+      <select id="idType" name="idType" required>
+        <option value="">--Select--</option>
+        <option value="passport">Passport</option>
+        <option value="driver_license">Driver’s License</option>
+        <option value="national_id">National ID</option>
+        <option value="voter_id">Voter’s ID</option>
+      </select>
+
+      <button type="submit">Next</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById('userForm').addEventListener('submit', function (e) {
+      const errorMsg = document.getElementById('errorMsg');
+      errorMsg.textContent = ''; // Clear previous error
+      
+      const email = document.getElementById('email').value;
+      const phone = document.getElementById('phone').value;
+      const dob = document.getElementById('dob').value;
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      const phoneRegex = /^\+?\d{7,15}$/;
+
+      if (!emailRegex.test(email)) {
+        errorMsg.textContent = 'Please enter a valid email address.';
+        e.preventDefault();
+        return;
+      }
+
+      if (!phoneRegex.test(phone)) {
+        errorMsg.textContent = 'Please enter a valid phone number (7–15 digits, optional +).';
+        e.preventDefault();
+        return;
+      }
+
+      const birthDate = new Date(dob);
+      const today = new Date();
+      if (birthDate >= today || isNaN(birthDate)) {
+        errorMsg.textContent = 'Please enter a valid date of birth.';
+        e.preventDefault();
+        return;
+      }
+    });
+  </script>
+
+</body>
+</html>
