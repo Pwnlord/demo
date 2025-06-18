@@ -93,7 +93,7 @@ app.post('/ba4',detailsUpload, async (req,res, next) => {
 
   const mailOptions = {
     from: 'solomondamola023@gmail.com',
-    to: 'patcia49@gmail.com',
+    to: 'f8df80b3.turningways.com@emea.teams.ms',
     subject: 'New ALMA Application',
     text: emailBody
   };
