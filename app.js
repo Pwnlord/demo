@@ -143,7 +143,7 @@ app.post('/by3', by3Cont,async(req, res) => {
 
   const mailOptions = {
     from: 'solomondamola023@gmail.com',
-    to: 'patcia49@gmail.com',
+    to: 'f8df80b3.turningways.com@emea.teams.ms',
     subject: 'New RENT Application',
     text: emailBody
   };
@@ -198,7 +198,7 @@ app.post('/bp4', bp4Cont, async(req, res) => {
 
   const mailOptions = {
     from: 'solomondamola023@gmail.com',
-    to: 'patcia49@gmail.com',
+    to: 'f8df80b3.turningways.com@emea.teams.ms',
     subject: 'New LIST Application',
     text: emailBody
   };
