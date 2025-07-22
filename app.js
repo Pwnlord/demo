@@ -33,7 +33,11 @@ app.use(session({
   }));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'task.html'));
+    res.sendFile(path.join(__dirname, 'public', 'fgh.html'));
+});
+
+app.get('/contact-us', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'task.html'));
 });
 
 app.get('/become-an-affliate', (req, res) => {
