@@ -24,6 +24,7 @@ const bp1Cont = require('./controllers/bp1.controller.js')
 const bp2Cont = require('./controllers/bp2.controller.js')
 const bp3Cont = require('./controllers/bp3.controller.js')
 const bp4Cont = require('./controllers/bp4.controller.js')
+const search = require('./controllers/search.controller.js')
 
 
 app.use(session({
@@ -33,7 +34,14 @@ app.use(session({
   }));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public', 'fgh.html'));
+    res.sendFile(path.join(__dirname, 'public', 'home.html'));
+});
+
+app.get('/search',search, async (req, res) => {
+
+})
+app.get('/search-results.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'search-results.html'));
 });
 
 app.get('/contact-us', (req, res) => {

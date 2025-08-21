@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results - Proptitek</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Search Results Styles */
+        .search-results-container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        
+        .search-results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .search-params {
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        
+        .search-params span {
+            background-color: #e9ecef;
+            padding: 5px 10px;
+            border-radius: 4px;
+            margin-right: 10px;
+            display: inline-block;
+            margin-bottom: 5px;
+        }
+        
+        .results-count {
+            font-size: 18px;
+            color: #1a365d;
+        }
+        
+        .results-sort {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .results-sort select {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        
+        .results-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        
+        .result-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .result-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+        
+        .result-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .result-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .result-card:hover .result-image img {
+            transform: scale(1.05);
+        }
+        
+        .result-details {
+            padding: 20px;
+        }
+        
+        .result-price {
+            font-size: 22px;
+            font-weight: 700;
+            color: #1a365d;
+            margin-bottom: 10px;
+        }
+        
+        .result-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
+        
+        .result-location {
+            color: #666;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .result-features {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .result-feature {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: #666;
+        }
+        
+        .result-feature i {
+            color: #1a365d;
+        }
+        
+        .result-size {
+            color: #666;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .no-results {
+            text-align: center;
+            padding: 40px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .no-results i {
+            font-size: 48px;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+        
+        .no-results h3 {
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .no-results p {
+            color: #888;
+        }
+        
+        .results-loading {
+            text-align: center;
+            padding: 40px;
+        }
+        
+        .loading-spinner {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #1a365d;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Back to search button */
+        .back-to-search {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #1a365d;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        
+        .back-to-search:hover {
+            background-color: #2c5282;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .search-results-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+            
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <div class="contact-info">
+                <a href="mailto:info@proptitek.com">info@proptitek.com</a>
+                <a href="tel:+2348078952353">+234 807 895 2353</a>
+            </div>
+        </div>
+        <nav class="main-nav">
+            <div class="logo">
+                <img src="assets/images/cropped-proptitek_logo_whitebg_logo-removebg-preview.png" alt="logo">
+            </div>
+            <div class="nav-menu">
+                <a href="/">Home</a>
+                <a href="#" class="active">Listings</a>
+                <a href="#">About us</a>
+                <a href="#">Services</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">Enquiries</a>
+                    <div class="dropdown-content">
+                        <a href="/become-an-affliate">Become an Affiliate</a>
+                        <a href="/rent-property">Buy Rent or Lease your property</a>
+                        <a href="/list-property">List your property</a>
+                    </div>
+                </div>
+                <a href="/contact-us">Contact us</a>
+            </div>
+            <div class="affiliate-link">
+                <a href="#">Become an Affiliate</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Search Results Section -->
+    <section class="search-results-container">
+        <div class="search-results-header">
+            <h2>Search Results</h2>
+            <div class="results-sort">
+                <label for="sortResults">Sort by:</label>
+                <select id="sortResults">
+                    <option value="price_asc">Price: Low to High</option>
+                    <option value="price_desc">Price: High to Low</option>
+                    <option value="newest">Newest</option>
+                </select>
+            </div>
+        </div>
+        
+        <div id="searchParams" class="search-params"></div>
+        
+        <div id="searchResults">
+            <div class="results-loading">
+                <div class="loading-spinner"></div>
+                <p>Loading search results...</p>
+            </div>
+        </div>
+        
+        <a href="/" class="back-to-search">Back to Search</a>
+    </section>
+
+    <!-- Include Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchResults = document.getElementById('searchResults');
+            const searchParams = document.getElementById('searchParams');
+            const sortSelect = document.getElementById('sortResults');
+            
+            // Get search parameters from URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const keyword = urlParams.get('keyword') || '';
+            const location = urlParams.get('location') || '';
+            const type = urlParams.get('type') || '';
+            const sort = urlParams.get('sort') || 'newest';
+            
+            // Display search parameters
+            displaySearchParams(keyword, location, type);
+            
+            // Set the sort dropdown to match the URL parameter
+            sortSelect.value = sort;
+            
+            // Perform search with parameters from URL
+            performSearch(keyword, location, type, sort);
+            
+            // Handle sort change
+            sortSelect.addEventListener('change', function() {
+                // Update URL with new sort parameter without reloading
+                const newParams = new URLSearchParams(window.location.search);
+                newParams.set('sort', sortSelect.value);
+                window.history.replaceState({}, '', `${window.location.pathname}?${newParams}`);
+                
+                // Perform search with new sorting
+                performSearch(keyword, location, type, sortSelect.value);
+            });
+            
+            // Function to display search parameters
+            function displaySearchParams(keyword, location, type) {
+                let paramsHTML = 'Searching for: ';
+                const params = [];
+                
+                if (keyword) params.push(`<span>Keyword: ${keyword}</span>`);
+                if (location) params.push(`<span>Location: ${location}</span>`);
+                if (type) params.push(`<span>Type: ${type}</span>`);
+                
+                if (params.length > 0) {
+                    searchParams.innerHTML = paramsHTML + params.join(' ');
+                } else {
+                    searchParams.innerHTML = 'Showing all properties';
+                }
+            }
+            
+            // Function to perform search
+            function performSearch(keyword, location, type, sort = 'newest') {
+                // Show loading state
+                searchResults.innerHTML = `
+                    <div class="results-loading">
+                        <div class="loading-spinner"></div>
+                        <p>Searching properties...</p>
+                    </div>
+                `;
+                
+                // Build query string
+                let queryParams = [];
+                if (keyword) queryParams.push(`keyword=${encodeURIComponent(keyword)}`);
+                if (location) queryParams.push(`location=${encodeURIComponent(location)}`);
+                if (type) queryParams.push(`type=${encodeURIComponent(type)}`);
+                if (sort) queryParams.push(`sort=${encodeURIComponent(sort)}`);
+                
+                // Update page title with search terms
+                if (keyword || location) {
+                    const titleParts = [];
+                    if (keyword) titleParts.push(keyword);
+                    if (location) titleParts.push(location);
+                    document.title = `${titleParts.join(' - ')} - Search Results - Proptitek`;
+                }
+                
+                // Fetch results from your backend
+                fetch(`http://localhost:5000/search?${queryParams.join('&')}`)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Network response was not ok');
+                        }
+                        return response.json();
+                    })
+                    .then(data => {
+                        displayResults(data, keyword, location, type);
+                    })
+                    .catch(error => {
+                        console.error('Error fetching search results:', error);
+                        searchResults.innerHTML = `
+                            <div class="no-results">
+                                <i class="fas fa-exclamation-circle"></i>
+                                <h3>Error loading results</h3>
+                                <p>Please try again later</p>
+                            </div>
+                        `;
+                    });
+            }
+            
+            // Function to display results
+            function displayResults(properties, keyword, location, type) {
+                if (!properties || properties.length === 0) {
+                    searchResults.innerHTML = `
+                        <div class="no-results">
+                            <i class="fas fa-search"></i>
+                            <h3>No properties found</h3>
+                            <p>Try adjusting your search criteria</p>
+                        </div>
+                    `;
+                    return;
+                }
+                
+                // Update results count
+                document.querySelector('.search-results-header h2').textContent = 
+                    `Search Results (${properties.length} properties found)`;
+                
+                // Generate HTML for properties
+                let resultsHTML = '<div class="results-grid">';
+                
+                properties.forEach(property => {
+                    resultsHTML += `
+                        <div class="result-card">
+                            <div class="result-image">
+                                <img src="${property.image_url || 'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'}" alt="${property.title}">
+                            </div>
+                            <div class="result-details">
+                                <div class="result-price">₦ ${formatPrice(property.price)}</div>
+                                <h3 class="result-title">${property.title}</h3>
+                                <div class="result-location">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                    ${property.location || 'NA'}
+                                </div>
+                                <div class="result-features">
+                                    <div class="result-feature">
+                                        <i class="fas fa-bed"></i>
+                                        ${property.bedrooms || 'NA'} Bedrooms
+                                    </div>
+                                    <div class="result-feature">
+                                        <i class="fas fa-bath"></i>
+                                        ${property.bathrooms || 'NA'} Bathrooms
+                                    </div>
+                                </div>
+                                <div class="result-size">
+                                    <i class="fas fa-vector-square"></i>
+                                    ${property.size || 'NA'} m²
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+                
+                resultsHTML += '</div>';
+                searchResults.innerHTML = resultsHTML;
+            }
+            
+            // Helper function to format price
+            function formatPrice(price) {
+                if (!price) return 'N/A';
+                return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            }
+        });
+    </script>
+</body>
+</html>

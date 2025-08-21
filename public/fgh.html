@@ -46,20 +46,25 @@
         <h1>Discover Your <span class="highlight">Dream</span> Home!</h1>
         <p>We can find you the perfect property & help you locate the home of your dreams.</p>
         
+       <form action="http://localhost:5000/search" method="GET">
         <div class="search-bar">
             <div class="search-row">
-                <input type="text" placeholder="Search keyword...">
+                <input type="text" name="keyword" placeholder="Search keyword...">
             </div>
             <div class="search-row">
-                <input type="text" placeholder="Location">
+                <input type="text" name="location" placeholder="Location">
             </div>
             <div class="search-row">
-                <select>
-                    <option>All Property Types</option>
+                <select name="type">
+                    <option value="">All Property Types</option>
+                    <option value="apartment">Apartment</option>
+                    <option value="house">House</option>
                 </select>
-                <button>Search</button>
+                <button type="submit">Search</button>
             </div>
         </div>
+       </form> 
+
     </section>
 
     <section class="categories">

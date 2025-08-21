@@ -1,11 +1,15 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Propt®Tek - Find Your Perfect Property</title>
-    <style>
-        /* Reset and base styles */
+    <title>Home - Proptitek</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+        /* Reset and Base Styles */
         * {
             margin: 0;
             padding: 0;
@@ -16,46 +20,58 @@
         body {
             color: #333;
             line-height: 1.6;
+            background-color: #f8f9fa;
         }
         
-        a {
+        /* Header Styles */
+        .top-bar {
+            background-color: #1a365d;
+            color: white;
+            padding: 8px 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .contact-info a {
+            color: white;
             text-decoration: none;
-            color: inherit;
+            margin-right: 20px;
+            font-size: 14px;
         }
         
-        /* Header styles */
-        header {
+        .main-nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 40px;
-            background-color: #fff;
+            padding: 15px 20px;
+            background-color: white;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
         
-        .logo {
-            font-weight: 700;
-            font-size: 24px;
-            color: #333;
+        .logo img {
+            height: 50px;
         }
         
-        .logo span {
-            color: #3a86ff;
-        }
-        
-        nav ul {
+        .nav-menu {
             display: flex;
-            list-style: none;
             gap: 25px;
         }
         
-        nav ul li {
+        .nav-menu a {
+            text-decoration: none;
+            color: #333;
             font-weight: 500;
-            font-size: 16px;
+            position: relative;
         }
         
-        nav ul li a:hover {
-            color: #3a86ff;
+        .nav-menu a.active:after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: #1a365d;
         }
         
         .dropdown {
@@ -65,573 +81,388 @@
         .dropdown-content {
             display: none;
             position: absolute;
-            background-color: #fff;
-            min-width: 160px;
+            background-color: white;
+            min-width: 200px;
             box-shadow: 0 8px 16px rgba(0,0,0,0.1);
             z-index: 1;
-            border-radius: 4px;
-            padding: 10px 0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .dropdown-content a {
+            color: #333;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+        
+        .dropdown-content a:hover {
+            background-color: #f1f1f1;
         }
         
         .dropdown:hover .dropdown-content {
             display: block;
         }
         
-        .dropdown-content a {
-            padding: 8px 16px;
-            display: block;
+        .affiliate-link a {
+            background-color: #1a365d;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
         }
         
-        .dropdown-content a:hover {
-            background-color: #f5f5f5;
-        }
-        
-        /* Hero section */
-        .hero {
-            padding: 80px 40px;
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1973&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 80px 20px;
             text-align: center;
-            background-color: #f9f9f9;
         }
         
-        .hero h1 {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #222;
-        }
-        
-        .hero p {
+        .tagline {
             font-size: 18px;
-            color: #666;
-            margin-bottom: 40px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-bottom: 10px;
         }
         
-        .search-box {
+        .hero-section h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .highlight {
+            color: #ffc107;
+        }
+        
+        .hero-section p {
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+        
+        /* Search Bar */
+        .search-bar {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
             max-width: 800px;
             margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
         
         .search-row {
             display: flex;
             gap: 15px;
-            margin-bottom: 15px;
         }
         
-        .search-input {
+        .search-row input,
+        .search-row select {
             flex: 1;
             padding: 12px 15px;
             border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-        }
-        
-        .search-select {
-            padding: 12px 15px;
-            border: 1px solid #ddd;
-            border-radius: 6px;
-            font-size: 16px;
-            background-color: #fff;
-            min-width: 180px;
-        }
-        
-        .search-button {
-            background-color: #3a86ff;
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        
-        .search-button:hover {
-            background-color: #2667cc;
-        }
-        
-        /* About section */
-        .about {
-            padding: 80px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .about h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            color: #222;
-        }
-        
-        .about p {
-            font-size: 16px;
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.8;
-        }
-        
-        .about-columns {
-            display: flex;
-            gap: 40px;
-            margin-top: 40px;
-        }
-        
-        .about-column {
-            flex: 1;
-        }
-        
-        .about-column h3 {
-            font-size: 24px;
-            margin-bottom: 15px;
-            color: #222;
-        }
-        
-        /* Properties section */
-        .properties {
-            padding: 80px 40px;
-            background-color: #f9f9f9;
-        }
-        
-        .section-header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        
-        .section-header h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 15px;
-            color: #222;
-        }
-        
-        .section-header p {
-            font-size: 16px;
-            color: #666;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .property-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .property-card {
-            background-color: #fff;
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-        }
-        
-        .property-image {
-            height: 200px;
-            background-color: #eee;
-        }
-        
-        .property-details {
-            padding: 20px;
-        }
-        
-        .property-details h3 {
-            font-size: 20px;
-            margin-bottom: 10px;
-            color: #222;
-        }
-        
-        .property-info {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 15px;
-            font-size: 14px;
-            color: #666;
-        }
-        
-        .property-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: #3a86ff;
-            margin-bottom: 15px;
-        }
-        
-        .property-meta {
-            display: flex;
-            justify-content: space-between;
-            font-size: 14px;
-            color: #999;
-        }
-        
-        /* Stats section */
-        .stats {
-            padding: 60px 40px;
-            background-color: #3a86ff;
-            color: #fff;
-            text-align: center;
-        }
-        
-        .stats-container {
-            display: flex;
-            justify-content: space-around;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-        
-        .stat-item {
-            padding: 20px;
-        }
-        
-        .stat-number {
-            font-size: 42px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        
-        .stat-label {
-            font-size: 16px;
-        }
-        
-        /* Process section */
-        .process {
-            padding: 80px 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .process-steps {
-            display: flex;
-            gap: 30px;
-            margin-top: 40px;
-        }
-        
-        .process-step {
-            flex: 1;
-            text-align: center;
-            padding: 30px 20px;
-            background-color: #f9f9f9;
-            border-radius: 8px;
-        }
-        
-        .process-step h3 {
-            font-size: 20px;
-            margin-bottom: 15px;
-            color: #222;
-        }
-        
-        .process-step p {
-            font-size: 14px;
-            color: #666;
-        }
-        
-        /* CTA section */
-        .cta {
-            padding: 80px 40px;
-            background-color: #222;
-            color: #fff;
-            text-align: center;
-        }
-        
-        .cta h2 {
-            font-size: 32px;
-            font-weight: 700;
-            margin-bottom: 20px;
-        }
-        
-        .cta p {
-            font-size: 16px;
-            color: #ccc;
-            margin-bottom: 30px;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background-color: #3a86ff;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 6px;
-            font-size: 16px;
-            font-weight: 600;
-            transition: background-color 0.3s;
-        }
-        
-        .cta-button:hover {
-            background-color: #2667cc;
-        }
-        
-        /* Footer */
-        footer {
-            padding: 60px 40px 30px;
-            background-color: #111;
-            color: #fff;
-        }
-        
-        .footer-content {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 40px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-logo {
-            font-weight: 700;
-            font-size: 24px;
-            margin-bottom: 20px;
-            display: block;
-        }
-        
-        .footer-about p {
-            color: #aaa;
-            margin-bottom: 20px;
-            line-height: 1.6;
-        }
-        
-        .footer-links h3 {
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-        
-        .footer-links ul {
-            list-style: none;
-        }
-        
-        .footer-links ul li {
-            margin-bottom: 12px;
-        }
-        
-        .footer-links a {
-            color: #aaa;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: #fff;
-        }
-        
-        .subscribe input {
-            width: 100%;
-            padding: 12px 15px;
-            margin-bottom: 15px;
-            border: none;
             border-radius: 4px;
-            background-color: #222;
-            color: #fff;
+            font-size: 16px;
         }
         
-        .copyright {
-            text-align: center;
-            margin-top: 60px;
-            padding-top: 30px;
-            border-top: 1px solid #333;
-            color: #666;
-            font-size: 14px;
+        .search-row button {
+            background-color: #1a365d;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background-color 0.3s ease;
+        }
+        
+        .search-row button:hover {
+            background-color: #2c5282;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .search-row {
+                flex-direction: column;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .main-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .hero-section h1 {
+                font-size: 36px;
+            }
         }
     </style>
-</head>
+</style>
+
 <body>
     <header>
-        <a href="#" class="logo">Propt®Tek</a>
-        <nav>
-            <ul>
-                <li><a href="#">Home</a></li>
-                <li><a href="#">Listings</a></li>
-                <li><a href="#">About us</a></li>
-                <li><a href="#">Services</a></li>
-                <li class="dropdown">
-                    <a href="#">Enquiries ▼</a>
+        <div class="top-bar">
+            <div class="contact-info">
+                <a href="mailto:info@proptitek.com">info@proptitek.com</a>
+                <a href="tel:+2348078952353">+234 807 895 2353</a>
+            </div>
+            
+        </div>
+        <nav class="main-nav">
+            <div class="logo">
+                <img src="assets/images/cropped-proptitek_logo_whitebg_logo-removebg-preview.png" alt="logo">
+            </div>
+            <div class="nav-menu">
+                <a href="#" class="active">Home</a>
+                <a href="#">Listings</a>
+                <a href="#">About us</a>
+                <a href="#">Services</a>
+                <div class="dropdown">
+                    <a href="#" class="dropbtn">Enquiries</a>
                     <div class="dropdown-content">
-                        <a href="#">Buy a property</a>
-                        <a href="#">Sell a property</a>
-                        <a href="#">Become an Affiliate</a>
+                        <a href="/become-an-affliate">Become an Affiliate</a>
+                        <a href="/rent-property">Buy Rent or Lease your property</a>
+                        <a href="/list-property">List your property</a>
                     </div>
-                </li>
-                <li><a href="#">Contact us</a></li>
-            </ul>
+                </div>
+                <a href="/contact-us">Contact us</a>
+            </div>
+            <div class="affiliate-link">
+                <a href="#">Become an Affiliate</a>
+            </div>
         </nav>
     </header>
 
-    <main>
-        <section class="hero">
-            <h1>Discover Your Dream Home!</h1>
-            <p>We can find you the perfect property & help you locate the home of your dreams.</p>
-            <div class="search-box">
-                <div class="search-row">
-                    <input type="text" class="search-input" placeholder="Search keyword...">
-                    <input type="text" class="search-input" placeholder="Location">
-                    <select class="search-select">
-                        <option>All Property Types</option>
-                        <option>Apartment</option>
-                        <option>Office Space</option>
-                        <option>Land</option>
-                    </select>
-                </div>
-                <div class="search-row">
-                    <input type="text" class="search-input" placeholder="Search properties by title...">
-                    <select class="search-select">
-                        <option>Select Status</option>
-                        <option>For Sale</option>
-                        <option>For Rent</option>
-                    </select>
-                    <select class="search-select">
-                        <option>Select Type</option>
-                        <option>Residential</option>
-                        <option>Commercial</option>
-                    </select>
-                    <button class="search-button">Search</button>
-                </div>
-            </div>
-        </section>
+    <section class="hero-section">
+        <div class="tagline">Find your perfect fit</div>
+        <h1>Discover Your <span class="highlight">Dream</span> Home!</h1>
+        <p>We can find you the perfect property & help you locate the home of your dreams.</p>
+        
+       <!-- Modified search form with AJAX -->
+       <form action="/search-results.html" method="GET">
+        <div class="search-row">
+            <input type="text" id="keyword" name="keyword" placeholder="Search keyword...">
+        </div>
+        <div class="search-row">
+            <input type="text" id="location" name="location" placeholder="Location">
+        </div>
+        <div class="search-row">
+            <select id="type" name="type">
+                <option value="">All Property Types</option>
+                <option value="apartment">Apartment</option>
+                <option value="house">House</option>
+            </select>
+            <button type="submit">Search</button>
+        </div>
+    </form>
+    </section>  
 
-        <section class="about">
-            <h2>About Us</h2>
-            <p>Discover your dream business with Luxus. From high-end luxury properties to affordable options, we have it all available for outright purchase, rental, or staycations! Connect with us.</p>
-            
-            <div class="about-columns">
-                <div class="about-column">
-                    <h3>For Buyers</h3>
-                    <p>Finding the right place to buy, rent, lease can often be stressful and time consuming. We are here to help you.</p>
-                </div>
-                <div class="about-column">
-                    <h3>For Sellers</h3>
-                    <p>Finding the right buyer who is serious and ready to make a purchase could be daunting and protracted. We solve this easily by plugging you into our rich database.</p>
-                </div>
+    <section class="categories">
+        <div class="category-item">
+            <img src="#" alt="lands icon">
+            <h3>lands</h3>
+        </div>
+        <div class="category-item">
+            <img src="#" alt="offices icon">
+            <h3>Offices</h3>
+        </div>
+        <div class="category-item">
+            <img src="#" alt="event centers icon">
+            <h3>Event centers</h3>
+        </div>
+        <div class="category-item">
+            <img src="#" alt="warehouses icon">
+            <h3>Warehouses</h3>
+        </div>
+        <div class="category-item">
+            <img src="#" alt="stays icon">
+            <h3>Stays</h3>
+        </div>
+        <div class="category-item">
+            <img src="#" alt="lands icon">
+            <h3>Lands</h3>
+        </div>
+    </section>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <section class="about-us">
+        <h2>About Us</h2>
+        <h3>Discover your dream business with Luxus.</h3>
+        <p>From high-end luxury properties to affordable options, we have it all available for outright purchase, rental, or staycations! Connect with us.</p>
+        <div class="about-features">
+            <div class="feature-item">
+                <h4>It's Easier to Register</h4>
+                <p>Proin ut ligula vel nunc egestas porttitor. Morbi lectus risus, iaculis vel, suscipit quis, luctus ac turpis.</p>
             </div>
-        </section>
+            <div class="feature-item">
+                <h4>Get Your Listings Promoted</h4>
+                <p>Lectus magna fringilla urna porttitor rhoncus dolor purus. Nunc lobortis mattis aliquam faucibus.</p>
+            </div>
+        </div>
+    </section>
 
-        <section class="properties">
-            <div class="section-header">
-                <h2>Properties</h2>
-                <p>Latest Listings</p>
-            </div>
-            
-            <div class="property-grid">
-                <div class="property-card">
-                    <div class="property-image"></div>
-                    <div class="property-details">
-                        <h3>5 Bedroom Detached Duplex at UNILAG Estate</h3>
-                        <div class="property-info">
-                            <span>Bedrooms: 5</span>
-                            <span>Bathrooms: 3</span>
-                        </div>
-                        <div class="property-price">N 225,000,000</div>
-                        <div class="property-meta">
-                            <span>110 m²</span>
-                            <span>Web Master</span>
-                            <span>June 19, 2025</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="property-card">
-                    <div class="property-image"></div>
-                    <div class="property-details">
-                        <h3>Office Space In New York</h3>
-                        <div class="property-info">
-                            <span>Bedrooms: 1</span>
-                            <span>Bathrooms: 1</span>
-                            <span>Parking: 1</span>
-                        </div>
-                        <div class="property-price">$8,545,000</div>
-                        <div class="property-meta">
-                            <span>1350 m²</span>
-                            <span>Web Master</span>
-                            <span>March 16, 2021</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="property-card">
-                    <div class="property-image"></div>
-                    <div class="property-details">
-                        <h3>Modern Villa In NYC</h3>
-                        <div class="property-info">
-                            <span>Bedrooms: 12</span>
-                            <span>Bathrooms: 10</span>
-                            <span>Parking: 5</span>
-                        </div>
-                        <div class="property-price">$5,785,000</div>
-                        <div class="property-meta">
-                            <span>640 m²</span>
-                            <span>Web Master</span>
-                            <span>March 16, 2021</span>
-                        </div>
-                    </div>
+    <section class="properties-listing">
+        <h2>Properties</h2>
+        <h3>Latest Listings</h3>
+        <p>Eget egestas purus viverra accumsan. Non nisi est sit amet facilisis magna. Auctor neque vitae tempus quam pellentesque nec nam, Mattis enims vitae et leo duis.</p>
+        <div class="property-grid">
+            <!-- Property items will go here -->
+            <div class="property-card">
+                <img src="assets/images/agency-cover1.jpg" alt="Property Image">
+                <div class="property-details">
+                    <span class="price">₦ 225,000,000</span>
+                    <h4>5 Bedroom Detached Duplex at UNILAG Estate Magodo, Lagos</h4>
+                    <p>NA</p>
+                    <ul>
+                        <li>Bedrooms: 5</li>
+                        <li>Bathrooms: 3</li>
+                        <li>Parking: NA</li>
+                    </ul>
+                    <span>110 m²</span>
                 </div>
             </div>
-        </section>
+            <div class="property-card">
+                <img src="assets/images/agency-cover1.jpg" alt="Property Image">
+                <div class="property-details">
+                    <span class="price">₦ 785,000</span>
+                    <h4>Office Space In New York</h4>
+                    <p>168th Street</p>
+                    <ul>
+                        <li>Bedrooms: NA</li>
+                        <li>Bathrooms: 1</li>
+                        <li>Parking: 1</li>
+                    </ul>
+                    <span>1350 m²</span>
+                </div>
+            </div>
+            <div class="property-card">
+                <img src="assets/images/agency-cover1.jpg" alt="Property Image">
+                <div class="property-details">
+                    <span class="price">₦ 8,545,000</span>
+                    <h4>Modern Villa In NYC</h4>
+                    <p>154A, Van Buren St</p>
+                    <ul>
+                        <li>Bedrooms: 12</li>
+                        <li>Bathrooms: 10</li>
+                        <li>Parking: 5</li>
+                    </ul>
+                    <span>640 m²</span>
+                </div>
+            </div>
+            <div class="property-card">
+                <img src="assets/images/agency-cover1.jpg" alt="Property Image">
+                <div class="property-details">
+                    <span class="price">₦ 3,548,000</span>
+                    <h4>Luxury Condo In NYC</h4>
+                    <p>Thieriot Avenue</p>
+                    <ul>
+                        <li>Bedrooms: 7</li>
+                        <li>Bathrooms: 5</li>
+                        <li>Parking: 2</li>
+                    </ul>
+                    <span>340 m²</span>
+                </div>
+            </div>
+            <div class="property-card">
+                <img src="assets/images/agency-cover1.jpg" alt="Property Image">
+                <div class="property-details">
+                    <span class="price">₦ 150,000</span>
+                    <h4>Family House in NYC</h4>
+                    <p>64th Street</p>
+                    <ul>
+                        <li>Bedrooms: 8</li>
+                        <li>Bathrooms: 6</li>
+                        <li>Parking: 3</li>
+                    </ul>
+                    <span>4500 m²</span>
+                </div>
+            </div>
+            <div class="property-card">
+                <img src="assets/images/agency-cover1.jpg" alt="Property Image">
+                <div class="property-details">
+                    <span class="price">₦ 254,000</span>
+                    <h4>Farm House in Los Angeles</h4>
+                    <p>Beverly Hills</p>
+                    <ul>
+                        <li>Bedrooms: 9</li>
+                        <li>Bathrooms: 6</li>
+                        <li>Parking: 5</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <button>Explore All Properties</button>
+    </section>
 
-        <section class="stats">
-            <div class="stats-container">
-                <div class="stat-item">
-                    <div class="stat-number">5000+</div>
-                    <div class="stat-label">Contacts</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100+</div>
-                    <div class="stat-label">Properties Listed</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">200+</div>
-                    <div class="stat-label">Subscribers</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">5+</div>
-                    <div class="stat-label">Cities covered</div>
-                </div>
+    <section class="buyer-process">
+        <h2>Buyer Process</h2>
+        <h3>How it Works?</h3>
+        <p>Are you a buyer looking to purchase, rent or lease a property? Follow the steps below</p>
+        <div class="process-steps">
+            <div class="step-item">
+                <h4>Explore Listings</h4>
+                <p>Mattis enim ut tellus sagittis vitae Non nisi est sit amet facilisis magna.</p>
             </div>
-        </section>
+            <div class="step-item">
+                <h4>Evaluate Properties</h4>
+                <p>Amet consectetur adipiscing elit quam pellentesque nec nam, vitae leo.</p>
+            </div>
+            <div class="step-item">
+                <h4>Submit Listings</h4>
+                <p>Nunc lobortis mattis aliquam faucibus. Auctor neque vitae tempus.</p>
+            </div>
+        </div>
+    </section>
 
-        <section class="process">
-            <div class="section-header">
-                <h2>How it Works?</h2>
-                <p>Are you a buyer looking to purchase, rent or lease a property? Follow the steps below</p>
-            </div>
-            
-            <div class="process-steps">
-                <div class="process-step">
-                    <h3>Explore Listings</h3>
-                    <p>Mattis enim ut tellus sagittis vitae Non nisi est sit amet facilisis magna.</p>
-                </div>
-                <div class="process-step">
-                    <h3>Evaluate Properties</h3>
-                    <p>Amet consectetur adipiscing elit quam pellentesque nec nam, vitae leo.</p>
-                </div>
-                <div class="process-step">
-                    <h3>Submit Listings</h3>
-                    <p>Nunc lobortis mattis aliquam faucibus. Auctor neque vitae tempus.</p>
-                </div>
-            </div>
-        </section>
+    <section class="sell-property">
+        <h3>Ready to sell, Rent or Lease Out your property?</h3>
+        <p>Leverage our robust client database and intelligent matching techniques to connect you to the right buyer and dream property quickly and effortlessly.</p>
+        <button>Contact Us</button>
+    </section>
 
-        <section class="cta">
-            <h2>Ready to sell, Rent or Lease Out your property?</h2>
-            <p>Leverage our robust client database and intelligent matching techniques to connect you to the right buyer and dream property quickly and effortlessly.</p>
-            <a href="#" class="cta-button">Contact Us</a>
-        </section>
-    </main>
+    <section class="stats">
+        <div class="stat-item">
+            <span>3589 +</span>
+            <p>Contacts</p>
+        </div>
+        <div class="stat-item">
+            <span>71 +</span>
+            <p>Properties Listed</p>
+        </div>
+        <div class="stat-item">
+            <span>144 +</span>
+            <p>Subscribers</p>
+        </div>
+        <div class="stat-item">
+            <span>3 +</span>
+            <p>Cities covered</p>
+        </div>
+    </section>
+
+    <section class="news-blog">
+        <h2>News & Blog</h2>
+        <h3>Latest New Feeds</h3>
+        <p>We keep you up to date on the latest news and trends in the real estate world. Stay connected!</p>
+        <button>Coming Soon</button>
+    </section>
 
     <footer>
         <div class="footer-content">
-            <div class="footer-about">
-                <a href="#" class="footer-logo">Propt®Tek</a>
-                <p>ProptTek is part of Vantage Point Advanced Solutions Ltd (VPAS), a digital technology leader in financial and property related technology services.</p>
+            <div class="footer-logo">
+                <img src="assets/images/cropped-proptitek_logo_darkbg_logo__1_-removebg-preview.png" alt="footer logo">
+                <p>+234 807 895 2353</p>
+                <p>info@proptitek.com</p>
             </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
+            <div class="quick-links">
+                <h4>Quick Links</h4>
                 <ul>
                     <li><a href="#">About Us</a></li>
                     <li><a href="#">Listings</a></li>
@@ -639,26 +470,33 @@
                     <li><a href="#">Contact Us</a></li>
                 </ul>
             </div>
-            <div class="footer-links">
-                <h3>Get Info</h3>
+            <div class="get-info">
+                <h4>Get Info</h4>
                 <ul>
                     <li><a href="#">Become an Agent</a></li>
                     <li><a href="#">Buy a property</a></li>
                     <li><a href="#">Sell a property</a></li>
                 </ul>
             </div>
-            <div class="footer-links">
-                <h3>Subscribe</h3>
-                <div class="subscribe">
-                    <p>To get a free & amazing offers and other cool things stay with us. Please subscribe us.</p>
-                    <input type="email" placeholder="Your email address">
-                    <button class="cta-button">Subscribe</button>
-                </div>
+            <div class="subscribe">
+                <h4>Subscribe</h4>
+                <p>To get a free & amazing offers and other cool things stay with us. Please subscribe us.</p>
             </div>
         </div>
         <div class="copyright">
-            <p>Copyright © 2025 ProptTek. All rights reserved</p>
+            <p>PropTiTek is part of Vantage Point Advanced Solutions Ltd (VPAS), a digital technology leader in financial and property related technology services. Copyright © 2025 PropTiTek (™). All rights reserved</p>
+            <div class="social-links">
+                <a href="#">Facebook-f</a>
+                <a href="#">Instagram</a>
+                <a href="#">X-twitter</a>
+                <a href="#">Youtube</a>
+            </div>
         </div>
     </footer>
+    
 </body>
 </html>
+
+
+
+
